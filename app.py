@@ -3,7 +3,8 @@ from openpyxl import Workbook, load_workbook
 import os
 
 app = Flask(__name__)
-FILE_NAME = "client_data.xlsx"
+FILE_NAME = "/tmp/client_data.xlsx"
+
 
 # Create Excel file if not exists
 if not os.path.exists(FILE_NAME):
@@ -50,4 +51,7 @@ def add_meeting():
     return "Meeting Logged Successfully!"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port)
+
